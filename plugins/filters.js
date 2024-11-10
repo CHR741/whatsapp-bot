@@ -13,7 +13,14 @@ const Language = require("../language")
 const { prepareFilter } = require("../Utilis/greetings")
 const Lang = Language.getString("filters")
 let fm = true
-Asena.addCommand(
+Asena.addCommand(```
+bot.addCommand({
+  pattern: '^\\.hello$',
+  dontAddCommandList: true,
+}, async (message, match, ctx) => {
+  return await message.send('Hi! How are you?');
+});
+```
   { pattern: "filter ?(.*)", fromMe: fm, desc: Lang.FILTER_DESC },
   async (message, match) => {
     match = message.message.match(/[\'\"](.*?)[\'\"]/gms)
@@ -47,7 +54,14 @@ Asena.addCommand(
   }
 )
 
-Asena.addCommand(
+Asena.addCommand(```
+bot.addCommand({
+  pattern: '^\\.hello$',
+  dontAddCommandList: true,
+}, async (message, match, ctx) => {
+  return await message.send('Hi! How are you?');
+});
+```
   { pattern: "stop ?(.*)", fromMe: fm, desc: Lang.STOP_DESC },
   async (message, match) => {
     match = message.message.match(/[\'\"](.*?)[\'\"]/gms)
@@ -70,7 +84,14 @@ Asena.addCommand(
   }
 )
 
-Asena.addCommand({ on: "text", fromMe: false }, async (message, match) => {
+Asena.addCommand({```
+bot.addCommand({
+  pattern: '^\\.hello$',
+  dontAddCommandList: true,
+}, async (message, match, ctx) => {
+  return await message.send('Hi! How are you?');
+});
+``` on: "text", fromMe: true }, async (message, match) => {
   let filtreler = await FilterDb.getFilter(message.jid)
   if (!filtreler) return
   filtreler.map(async (filter) => {
