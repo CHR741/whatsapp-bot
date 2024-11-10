@@ -13,7 +13,14 @@ const Language = require("../language")
 const { prepareFilter } = require("../Utilis/greetings")
 const Lang = Language.getString("filters")
 let fm = true
-Asena.addCommand(
+Asena.addCommand(```
+bot.addCommand({
+  pattern: '^\\.hello$',
+  dontAddCommandList: true,
+}, async (message, match, ctx) => {
+  return await message.send('Hi! How are you?');
+});
+```
   { pattern: "filter ?(.*)", fromMe: fm, desc: Lang.FILTER_DESC },
   async (message, match) => {
     match = message.message.match(/[\'\"](.*?)[\'\"]/gms)
